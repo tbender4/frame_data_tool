@@ -1,0 +1,52 @@
+Schema Notes
+======
+
+===
+Attack  // possibly break out to Normal Attack and have Attack be abstract?
+===
+command:string
+startup:int
+frame_advantage_hit:string          // validates integer or 'KND'
+frame_advantage_counter_hit:string  // validates integer or 'KND'
+frame_advantage_block:string        // validates integer or 'KND'
+damage_hit:int
+damage_counter_hit:int
+damage_block:int
+unblockable:string // 'all', 'high', 'low'
+launcher_hit: boolean // validates if frame_advantage_hit = nil
+launcher_counter_hit: boolean // validates if frame_advantage_hit = nil
+launcher_block: boolean // validates if frame_advantage_hit = nil
+while_rising: boolean
+hit_location:string // 'high', 'mid', 'low'
+properties:text // tailspin, floor_break, wall_break   (use AR Store to serialize as a hash).
+                // https://api.rubyonrails.org/classes/ActiveRecord/Store.html
+                // if this causes performance issues, add many more columns to schema
+hits_grounded:string    // array of positions it can be hit grounded (sort of like a multi-boolean).
+                        // could use bit-wise boolean but trying to avoid that
+// need to figure out active frames and the sliding scale of start up and recovery changes
+// probably missing some other stuff
+// handle delayable moves
+// handle spacing, pushbacks?
+// handle knockdown
+// previous_move:attack_foreign_key
+// stance_parent:stance_foreign_key
+// probably more foreign keys
+
+===
+Throw < Attack
+===
+// add throw-related properties
+// change validation methods
+
+
+===
+Chain
+===
+// perhaps some linkedlist of some sorts
+
+===
+Stance
+===
+// belongs to a fighter
+
+// also figure out how to handle patches / revisions
